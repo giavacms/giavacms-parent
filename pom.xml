@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.giavacms</groupId>
+	<artifactId>giavacms-parent</artifactId>
+	<version>2.0.0</version>
+
+	<packaging>pom</packaging>
+
+	<name>GiavaCMS Parent POM</name>
+	<description>Parent POM for GiavaCMS projects. Provides default project build configuration.</description>
+	<url>http://giavacms.org</url>
+
+	<issueManagement />
+
+	<scm />
+
+	<developers>
+		<developer>
+			<id>giavacms.org</id>
+			<name>GiavaCMS</name>
+			<organization>GiavaCMS</organization>
+			<organizationUrl>http://giavacms.org</organizationUrl>
+		</developer>
+	</developers>
+
+	<mailingLists />
+
+	<licenses>
+		<license>
+			<name>Eclipse Public License version 1.0</name>
+			<url>http://www.eclipse.org/legal/epl-v10.html</url>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>GiavaCMS</name>
+		<url>http://giavacms.org</url>
+	</organization>
+
+	<properties>
+
+		<!-- Cross plugins settings -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.javaee6.web.spec>2.0.0.Final</version.javaee6.web.spec>
+		<version.junit>4.10</version.junit>
+	</properties>
+
+	<build>
+
+		<pluginManagement>
+			<plugins>
+				<!-- to be used in ejb modules -->
+				<!-- <plugin> <artifactId>maven-ejb-plugin</artifactId> <version>2.2.1</version> 
+					<configuration> <ejbVersion>3.0</ejbVersion> <archive> <manifest> <addClasspath>true</addClasspath> 
+					</manifest> </archive> </configuration> </plugin> -->
+				<!-- to be used in war modules, filtering of web resources -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.1.1</version>
+					<goals>
+						<goal>exploded</goal>
+					</goals>
+					<configuration>
+						<!-- deployment descriptor ufficiali -->
+						<filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+						<!-- altri deployment descriptor e risorse -->
+						<webResources>
+							<resource>
+								<directory>src/main/webapp</directory>
+								<filtering>true</filtering>
+								<includes>
+									<include>**/jboss-web.xml</include>
+									<include>**/*.xhtml</include>
+								</includes>
+							</resource>
+						</webResources>
+					</configuration>
+				</plugin>
+				<!-- to be used with modules that do have tests -->
+				<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+					<version>2.4</version> </plugin> -->
+				<!-- associare questi due plugin ai soli profili che si usa per compilare 
+					la versione da distribuire... TODO -->
+
+				<!-- Attach sources <plugin> <groupId>org.apache.maven.plugins</groupId> 
+					<artifactId>maven-source-plugin</artifactId> <version>2.1.2</version> <executions> 
+					<execution> <id>attach-sources</id> <goals> <goal>jar</goal> </goals> </execution> 
+					</executions> </plugin> -->
+				<!-- Attach javadoc <plugin> <groupId>org.apache.maven.plugins</groupId> 
+					<artifactId>maven-javadoc-plugin</artifactId> <version>2.8</version> <executions> 
+					<execution> <id>attach-javadocs</id> <goals> <goal>jar</goal> </goals> </execution> 
+					</executions> </plugin> -->
+			</plugins>
+
+		</pluginManagement>
+
+		<plugins>
+			<!-- Defines required Java version -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<!-- Eclipse plugin - download source and JavaDoc jars automatically -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<wtpversion>2.0</wtpversion>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
+				of artifacts. We use this here so that we always get the correct versions 
+				of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this 
+				as the JBoss stack of the Java EE Web Profile 6 APIs) -->
+			<dependency>
+				<groupId>org.jboss.spec</groupId>
+				<artifactId>jboss-javaee-web-6.0</artifactId>
+				<version>${version.javaee6.web.spec}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Test dependencies -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${version.junit}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- JSF Stuff -->
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-api</artifactId>
+				<version>2.1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-impl</artifactId>
+				<version>2.1.0</version>
+			</dependency>
+
+			<!-- Prime faces 3 -->
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>3.3</version>
+			</dependency>
+			<!--<dependency> <groupId>org.primefaces.themes</groupId> <artifactId>aristo</artifactId> 
+				<version>1.0.3</version> </dependency> -->
+			<!-- Hibernate Criteria -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>3.5.6-Final</version>
+			</dependency>
+
+			<!-- Apache commons -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.2</version>
+			</dependency>
+
+			<!-- JBoss stuff -->
+			<dependency>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging</artifactId>
+				<version>3.0.0.Beta4</version>
+			</dependency>
+
+			<!-- XHTML renderer -->
+			<dependency>
+				<groupId>com.lowagie</groupId>
+				<artifactId>itext</artifactId>
+				<version>2.0.8</version>
+			</dependency>
+			<dependency>
+				<groupId>org.xhtmlrenderer</groupId>
+				<artifactId>core-renderer</artifactId>
+				<version>R8pre2</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- Common to JEE and Servlet containers -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- JSF Stuff -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Prime faces 2 -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Hibernate Criteria -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- JBoss stuff -->
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.spec.javax.annotation</groupId>
+			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- Hibernate e persistenza -->
+		<!-- Hibernate messo nel parent per annotazioni su entity (parte ejb) e 
+			uso delle stesse in eventuali validatori (parte war) -->
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Bean Validation API (JSR 303) -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Servlet, JSP provided -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet</groupId>
+			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet.jsp</groupId>
+			<artifactId>jboss-jsp-api_2.2_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+	</profiles>
+
+	<distributionManagement>
+	</distributionManagement>
+
+</project>
