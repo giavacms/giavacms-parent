@@ -7,7 +7,7 @@
 
 	<groupId>org.giavacms</groupId>
 	<artifactId>giavacms-parent</artifactId>
-	<version>2.0.0</version>
+	<version>2.0.1-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 
@@ -46,7 +46,7 @@
 
 		<!-- Cross plugins settings -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<version.javaee6.web.spec>2.0.0.Final</version.javaee6.web.spec>
+		<!-- <version.jboss.spec.javaee.6.0>3.0.2.Final</version.jboss.spec.javaee.6.0> -->
 		<version.junit>4.10</version.junit>
 	</properties>
 
@@ -133,13 +133,7 @@
 				of artifacts. We use this here so that we always get the correct versions 
 				of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this 
 				as the JBoss stack of the Java EE Web Profile 6 APIs) -->
-			<dependency>
-				<groupId>org.jboss.spec</groupId>
-				<artifactId>jboss-javaee-web-6.0</artifactId>
-				<version>${version.javaee6.web.spec}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+
 
 			<!-- Test dependencies -->
 			<dependency>
@@ -165,16 +159,13 @@
 			<dependency>
 				<groupId>org.primefaces</groupId>
 				<artifactId>primefaces</artifactId>
-				<version>3.3</version>
+				<version>3.4.2</version>
 			</dependency>
 			<!--<dependency> <groupId>org.primefaces.themes</groupId> <artifactId>aristo</artifactId> 
 				<version>1.0.3</version> </dependency> -->
 			<!-- Hibernate Criteria -->
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-entitymanager</artifactId>
-				<version>3.5.6-Final</version>
-			</dependency>
+			<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-entitymanager</artifactId> 
+				</dependency> -->
 
 			<!-- Apache commons -->
 			<dependency>
@@ -197,7 +188,8 @@
 			<dependency>
 				<groupId>org.jboss.logging</groupId>
 				<artifactId>jboss-logging</artifactId>
-				<version>3.0.0.Beta4</version>
+				<version>3.1.2.GA</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<!-- XHTML renderer -->
@@ -216,17 +208,27 @@
 	</dependencyManagement>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>6.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.2.0.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
 		<!-- Common to JEE and Servlet containers -->
-		<dependency>
-			<groupId>javax.enterprise</groupId>
-			<artifactId>cdi-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>javax.enterprise</groupId> <artifactId>cdi-api</artifactId> 
+			<scope>provided</scope> </dependency> -->
+		<!-- <dependency> <groupId>javax.inject</groupId> <artifactId>javax.inject</artifactId> 
+			<scope>provided</scope> </dependency> -->
 
 		<!-- JSF Stuff -->
 		<dependency>
@@ -247,12 +249,8 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Hibernate Criteria -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- Hibernate Criteria <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-entitymanager</artifactId> 
+			<version></version> <scope>provided</scope> </dependency> -->
 
 		<!-- JBoss stuff -->
 		<dependency>
@@ -260,44 +258,24 @@
 			<artifactId>jboss-logging</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>org.jboss.spec.javax.ejb</groupId> <artifactId>jboss-ejb-api_3.1_spec</artifactId> 
+			<scope>provided</scope> </dependency> -->
 
-		<dependency>
-			<groupId>org.jboss.spec.javax.annotation</groupId>
-			<artifactId>jboss-annotations-api_1.1_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>org.jboss.spec.javax.annotation</groupId> <artifactId>jboss-annotations-api_1.1_spec</artifactId> 
+			<scope>provided</scope> </dependency> -->
 		<!-- Hibernate e persistenza -->
 		<!-- Hibernate messo nel parent per annotazioni su entity (parte ejb) e 
 			uso delle stesse in eventuali validatori (parte war) -->
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
+		<!-- <dependency> <groupId>org.hibernate.javax.persistence</groupId> <artifactId>hibernate-jpa-2.0-api</artifactId> 
+			<scope>provided</scope> </dependency> -->
 		<!-- Bean Validation API (JSR 303) -->
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>javax.validation</groupId> <artifactId>validation-api</artifactId> 
+			<scope>provided</scope> </dependency> -->
 
 		<!-- Servlet, JSP provided -->
-		<dependency>
-			<groupId>org.jboss.spec.javax.servlet</groupId>
-			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.servlet.jsp</groupId>
-			<artifactId>jboss-jsp-api_2.2_spec</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>org.jboss.spec.javax.servlet</groupId> <artifactId>jboss-servlet-api_3.0_spec</artifactId> 
+			<scope>provided</scope> </dependency> <dependency> <groupId>org.jboss.spec.javax.servlet.jsp</groupId> 
+			<artifactId>jboss-jsp-api_2.2_spec</artifactId> <scope>provided</scope> </dependency> -->
 	</dependencies>
 
 	<profiles>
