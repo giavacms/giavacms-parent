@@ -3,6 +3,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.giavacms</groupId>
@@ -15,20 +21,10 @@
 	<description>Parent POM for GiavaCMS projects. Provides default project build configuration.</description>
 	<url>http://giavacms.org</url>
 
-	<issueManagement />
-
-	<scm />
-
-	<developers>
-		<developer>
-			<id>giavacms.org</id>
-			<name>GiavaCMS</name>
-			<organization>GiavaCMS</organization>
-			<organizationUrl>http://giavacms.org</organizationUrl>
-		</developer>
-	</developers>
-
-	<mailingLists />
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.junit>4.10</version.junit>
+	</properties>
 
 	<licenses>
 		<license>
@@ -37,28 +33,46 @@
 		</license>
 	</licenses>
 
-	<organization>
-		<name>GiavaCMS</name>
-		<url>http://giavacms.org</url>
-	</organization>
+	<developers>
+		<developer>
+			<id>fiorenzino</id>
+			<name>Fiorenzo Pizza</name>
+			<email>fiorenzino@gmail.com</email>
+		</developer>
+		<developer>
+			<id>pisi79</id>
+			<name>Samuele Pasini</name>
+			<email>samuele.pasini@gmail.com</email>
+		</developer>
+	</developers>
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
 
-	<properties>
+	<scm>
+		<connection>scm:git:git://github.com/giavacms/giavacms-parent.git</connection>
+		<developerConnection>scm:git:git@github.com:giavacms/giavacms-parent.git</developerConnection>
+		<url>http://github.com/giavacms/giavacms-parent</url>
+	</scm>
 
-		<!-- Cross plugins settings -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- <version.jboss.spec.javaee.6.0>3.0.2.Final</version.jboss.spec.javaee.6.0> -->
-		<version.junit>4.10</version.junit>
-	</properties>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus snapshot repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Sonatype Nexus release repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 
 	<build>
 
 		<pluginManagement>
 			<plugins>
-				<!-- to be used in ejb modules -->
-				<!-- <plugin> <artifactId>maven-ejb-plugin</artifactId> <version>2.2.1</version> 
-					<configuration> <ejbVersion>3.0</ejbVersion> <archive> <manifest> <addClasspath>true</addClasspath> 
-					</manifest> </archive> </configuration> </plugin> -->
-				<!-- to be used in war modules, filtering of web resources -->
+
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
@@ -82,14 +96,13 @@
 						</webResources>
 					</configuration>
 				</plugin>
-				<!-- to be used with modules that do have tests -->
-				<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
-					<version>2.4</version> </plugin> -->
+
 			</plugins>
 
 		</pluginManagement>
 
 		<plugins>
+
 			<!-- Defines required Java version -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -98,8 +111,63 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<inherited>true</inherited>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+			</plugin>
+
 			<!-- Eclipse plugin - download source and JavaDoc jars automatically -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -111,18 +179,16 @@
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
+
+
+
 		</plugins>
+
 	</build>
 
 	<dependencyManagement>
+
 		<dependencies>
-
-			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
-				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
-				of artifacts. We use this here so that we always get the correct versions 
-				of artifacts. Here we use the jboss-javaee-web-6.0 stack (you can read this 
-				as the JBoss stack of the Java EE Web Profile 6 APIs) -->
-
 
 			<!-- Test dependencies -->
 			<dependency>
@@ -150,11 +216,6 @@
 				<artifactId>primefaces</artifactId>
 				<version>3.3</version>
 			</dependency>
-			<!--<dependency> <groupId>org.primefaces.themes</groupId> <artifactId>aristo</artifactId> 
-				<version>1.0.3</version> </dependency> -->
-			<!-- Hibernate Criteria -->
-			<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-entitymanager</artifactId> 
-				</dependency> -->
 
 			<!-- Apache commons -->
 			<dependency>
@@ -194,6 +255,7 @@
 			</dependency>
 
 		</dependencies>
+
 	</dependencyManagement>
 
 	<dependencies>
@@ -211,14 +273,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
-
-		<!-- Common to JEE and Servlet containers -->
-		<!-- <dependency> <groupId>javax.enterprise</groupId> <artifactId>cdi-api</artifactId> 
-			<scope>provided</scope> </dependency> -->
-		<!-- <dependency> <groupId>javax.inject</groupId> <artifactId>javax.inject</artifactId> 
-			<scope>provided</scope> </dependency> -->
-
 		<!-- JSF Stuff -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -231,15 +285,12 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Prime faces 2 -->
+		<!-- Prime faces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- Hibernate Criteria <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-entitymanager</artifactId> 
-			<version></version> <scope>provided</scope> </dependency> -->
 
 		<!-- JBoss stuff -->
 		<dependency>
@@ -247,56 +298,34 @@
 			<artifactId>jboss-logging</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- <dependency> <groupId>org.jboss.spec.javax.ejb</groupId> <artifactId>jboss-ejb-api_3.1_spec</artifactId> 
-			<scope>provided</scope> </dependency> -->
 
-		<!-- <dependency> <groupId>org.jboss.spec.javax.annotation</groupId> <artifactId>jboss-annotations-api_1.1_spec</artifactId> 
-			<scope>provided</scope> </dependency> -->
-		<!-- Hibernate e persistenza -->
-		<!-- Hibernate messo nel parent per annotazioni su entity (parte ejb) e 
-			uso delle stesse in eventuali validatori (parte war) -->
-		<!-- <dependency> <groupId>org.hibernate.javax.persistence</groupId> <artifactId>hibernate-jpa-2.0-api</artifactId> 
-			<scope>provided</scope> </dependency> -->
-		<!-- Bean Validation API (JSR 303) -->
-		<!-- <dependency> <groupId>javax.validation</groupId> <artifactId>validation-api</artifactId> 
-			<scope>provided</scope> </dependency> -->
-
-		<!-- Servlet, JSP provided -->
-		<!-- <dependency> <groupId>org.jboss.spec.javax.servlet</groupId> <artifactId>jboss-servlet-api_3.0_spec</artifactId> 
-			<scope>provided</scope> </dependency> <dependency> <groupId>org.jboss.spec.javax.servlet.jsp</groupId> 
-			<artifactId>jboss-jsp-api_2.2_spec</artifactId> <scope>provided</scope> </dependency> -->
 	</dependencies>
 
 	<profiles>
 		<profile>
-			<id>full</id>
+			<id>release-sign-artifacts</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
 			</activation>
 			<build>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>2.1.2</version>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.4</version>
+						<configuration>
+							<passphrase>${gpg.passphrase}</passphrase>
+							<keyname>${gpg.keyname}</keyname>
+						</configuration>
 						<executions>
 							<execution>
-								<id>attach-sources</id>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
 								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>2.8</version>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
+									<goal>sign</goal>
 								</goals>
 							</execution>
 						</executions>
@@ -305,8 +334,5 @@
 			</build>
 		</profile>
 	</profiles>
-
-	<distributionManagement>
-	</distributionManagement>
 
 </project>
