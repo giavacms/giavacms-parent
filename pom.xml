@@ -47,7 +47,6 @@
 		<version.core-renderer>R8pre2</version.core-renderer>
 		<version.javaee-api>6.0</version.javaee-api>
 		<version.hibernate-entitymanager>4.2.0.Final</version.hibernate-entitymanager>
-		<version.jbossweb>7.2.0.Final</version.jbossweb>
 		<version.catalina>6.0.26</version.catalina>
 		<version.jtidy>r938</version.jtidy>
 		<version.org.jsoup>1.7.2</version.org.jsoup>
@@ -287,13 +286,6 @@
 				<groupId>org.xhtmlrenderer</groupId>
 				<artifactId>core-renderer</artifactId>
 				<version>${version.core-renderer}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.web</groupId>
-				<artifactId>jbossweb</artifactId>
-				<version>${version.jbossweb}</version>
-				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
