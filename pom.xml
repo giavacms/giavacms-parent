@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -22,7 +23,30 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<version.maven-war-plugin>2.1.1</version.maven-war-plugin>
+		<version.maven-compiler-plugin>2.3.2</version.maven-compiler-plugin>
+		<version.source>1.6</version.source>
+		<version.target>1.6</version.target>
+		<version.maven-jar-plugin>2.4</version.maven-jar-plugin>
+		<version.maven-source-plugin>2.2.1</version.maven-source-plugin>
+		<version.maven-surefire-plugin>2.12</version.maven-surefire-plugin>
+		<version.maven-javadoc-plugin>2.9</version.maven-javadoc-plugin>
+		<version.maven-eclipse-plugin>2.8</version.maven-eclipse-plugin>
+		<version.wtpversion>2.0</version.wtpversion>
+		<version.maven-gpg-plugin>1.4</version.maven-gpg-plugin>
 		<version.junit>4.10</version.junit>
+		<version.jsf-api>2.1.0</version.jsf-api>
+		<version.jsf-impl>2.1.0</version.jsf-impl>
+		<version.org.primefaces>3.3</version.org.primefaces>
+		<version.commons-lang>2.5</version.commons-lang>
+		<version.commons-io>1.4</version.commons-io>
+		<version.commons-fileupload>1.2</version.commons-fileupload>
+		<version.jboss-logging>3.1.2.GA</version.jboss-logging>
+		<version.itext>2.0.8</version.itext>
+		<version.core-renderer>R8pre2</version.core-renderer>
+		<version.javaee-api>6.0</version.javaee-api>
+		<version.hibernate-entitymanager>4.2.0.Final</version.hibernate-entitymanager>
 	</properties>
 
 	<licenses>
@@ -75,7 +99,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>2.1.1</version>
+					<version>${version.maven-war-plugin}</version>
 					<goals>
 						<goal>exploded</goal>
 					</goals>
@@ -106,18 +130,18 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>${version.maven-compiler-plugin}</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<encoding>UTF-8</encoding>
+					<source>${version.source}</source>
+					<target>${version.target}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
+				<version>${version.maven-jar-plugin}</version>
 				<inherited>true</inherited>
 				<configuration>
 					<archive>
@@ -132,7 +156,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
+				<version>${version.maven-source-plugin}</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -145,13 +169,12 @@
 
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12</version>
+				<version>${version.maven-surefire-plugin}</version>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9</version>
+				<version>${version.maven-javadoc-plugin}</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -171,9 +194,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.8</version>
+				<version>${version.maven-eclipse-plugin}</version>
 				<configuration>
-					<wtpversion>2.0</wtpversion>
+					<wtpversion>${version.wtpversion}</wtpversion>
 					<downloadSources>true</downloadSources>
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
@@ -197,47 +220,48 @@
 				<scope>test</scope>
 			</dependency>
 
+
 			<!-- JSF Stuff -->
 			<dependency>
 				<groupId>com.sun.faces</groupId>
 				<artifactId>jsf-api</artifactId>
-				<version>2.1.0</version>
+				<version>${version.jsf-api}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.sun.faces</groupId>
 				<artifactId>jsf-impl</artifactId>
-				<version>2.1.0</version>
+				<version>${version.jsf-impl}</version>
 			</dependency>
 
 			<!-- Prime faces 3 -->
 			<dependency>
 				<groupId>org.primefaces</groupId>
 				<artifactId>primefaces</artifactId>
-				<version>3.3</version>
+				<version>${version.org.primefaces}</version>
 			</dependency>
 
 			<!-- Apache commons -->
 			<dependency>
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
-				<version>2.5</version>
+				<version>${version.commons-lang}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
-				<version>1.4</version>
+				<version>${version.commons-io}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
-				<version>1.2</version>
+				<version>${version.commons-fileupload}</version>
 			</dependency>
 
 			<!-- JBoss stuff -->
 			<dependency>
 				<groupId>org.jboss.logging</groupId>
 				<artifactId>jboss-logging</artifactId>
-				<version>3.1.2.GA</version>
+				<version>${version.jboss-logging}</version>
 				<scope>provided</scope>
 			</dependency>
 
@@ -245,12 +269,12 @@
 			<dependency>
 				<groupId>com.lowagie</groupId>
 				<artifactId>itext</artifactId>
-				<version>2.0.8</version>
+				<version>${version.itext}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.xhtmlrenderer</groupId>
 				<artifactId>core-renderer</artifactId>
-				<version>R8pre2</version>
+				<version>${version.core-renderer}</version>
 			</dependency>
 
 		</dependencies>
@@ -258,17 +282,16 @@
 	</dependencyManagement>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>6.0</version>
+			<version>${version.javaee-api}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.2.0.Final</version>
+			<version>${version.hibernate-entitymanager}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -314,7 +337,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.4</version>
+						<version>${version.maven-gpg-plugin}</version>
 						<configuration>
 							<passphrase>${gpg.passphrase}</passphrase>
 							<keyname>${gpg.keyname}</keyname>
