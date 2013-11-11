@@ -49,6 +49,15 @@
 		<version.hibernate-entitymanager>4.2.0.Final</version.hibernate-entitymanager>
 		<version.jbossweb>7.2.0.Final</version.jbossweb>
 		<version.jtidy>r938</version.jtidy>
+		<version.org.jsoup>1.7.2</version.org.jsoup>
+		<version.httpclient>4.1.3</version.httpclient>
+		<version.jackson-jaxrs>1.9.6</version.jackson-jaxrs>
+		<version.rest-api-sdk>0.7.1</version.rest-api-sdk>
+		<version.log4j>1.2.14</version.log4j>
+		<version.prettyfaces-jsf2>3.3.2</version.prettyfaces-jsf2>
+		<version.jboss-ejb3-ext-api>2.0.0</version.jboss-ejb3-ext-api>
+		<version.twiliofaces>1.2.5-SNAPSHOT</version.twiliofaces>
+		<version.kxml2>2.3.0</version.kxml2>
 	</properties>
 
 	<licenses>
@@ -290,6 +299,62 @@
 				<groupId>net.sf.jtidy</groupId>
 				<artifactId>jtidy</artifactId>
 				<version>${version.jtidy}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>${version.org.jsoup}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${version.httpclient}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-jaxrs</artifactId>
+				<version>${version.jackson-jaxrs}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.paypal.sdk</groupId>
+				<artifactId>rest-api-sdk</artifactId>
+				<version>${version.rest-api-sdk}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${version.log4j}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ocpsoft</groupId>
+				<artifactId>prettyfaces-jsf2</artifactId>
+				<version>${version.prettyfaces-jsf2}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.ejb3</groupId>
+				<artifactId>jboss-ejb3-ext-api</artifactId>
+				<version>${version.jboss-ejb3-ext-api}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.twiliofaces</groupId>
+				<artifactId>twiliofaces</artifactId>
+				<version>${version.twiliofaces}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sf.kxml</groupId>
+				<artifactId>kxml2</artifactId>
+				<version>${version.kxml2}</version>
 			</dependency>
 
 		</dependencies>
