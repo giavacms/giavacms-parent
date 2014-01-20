@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -57,6 +58,9 @@
 		<version.jboss-ejb3-ext-api>2.0.0</version.jboss-ejb3-ext-api>
 		<version.twiliofaces>1.2.5-SNAPSHOT</version.twiliofaces>
 		<version.kxml2>2.3.0</version.kxml2>
+
+		<version.resteasy-jaxrs>2.3.0.GA</version.resteasy-jaxrs>
+		<version.resteasy-jettison-provider>1.2.1.GA</version.resteasy-jettison-provider>
 	</properties>
 
 	<licenses>
@@ -354,6 +358,32 @@
 				<groupId>net.sf.kxml</groupId>
 				<artifactId>kxml2</artifactId>
 				<version>${version.kxml2}</version>
+			</dependency>
+
+			<!-- REST -->
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxrs</artifactId>
+				<version>${version.resteasy-jaxrs}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-multipart-provider</artifactId>
+				<version>${version.resteasy-jaxrs}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxb-provider</artifactId>
+				<version>${version.resteasy-jaxrs}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jettison-provider</artifactId>
+				<version>${version.resteasy-jettison-provider}</version>
 			</dependency>
 
 		</dependencies>
