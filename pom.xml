@@ -59,8 +59,7 @@
 		<version.twiliofaces>1.2.5-SNAPSHOT</version.twiliofaces>
 		<version.kxml2>2.3.0</version.kxml2>
 
-		<version.resteasy-jaxrs>2.3.0.GA</version.resteasy-jaxrs>
-		<version.resteasy-jettison-provider>1.2.1.GA</version.resteasy-jettison-provider>
+		<version.resteasy-jaxrs>2.3.2.Final</version.resteasy-jaxrs>
 	</properties>
 
 	<licenses>
@@ -383,8 +382,15 @@
 			<dependency>
 				<groupId>org.jboss.resteasy</groupId>
 				<artifactId>resteasy-jettison-provider</artifactId>
-				<version>${version.resteasy-jettison-provider}</version>
+				<version>${version.resteasy-jaxrs}</version>
 			</dependency>
+			
+			<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jackson-provider</artifactId>
+			<version>${version.resteasy-jaxrs}</version>
+		</dependency>
+			
 
 		</dependencies>
 
