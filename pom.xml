@@ -13,7 +13,7 @@
 
 	<groupId>org.giavacms</groupId>
 	<artifactId>giavacms-parent</artifactId>
-	<version>2.0.4-SNAPSHOT</version>
+	<version>3.0.0-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 
@@ -26,8 +26,8 @@
 
 		<version.maven-war-plugin>2.1.1</version.maven-war-plugin>
 		<version.maven-compiler-plugin>2.3.2</version.maven-compiler-plugin>
-		<version.source>1.7</version.source>
-		<version.target>1.7</version.target>
+		<version.source>1.8</version.source>
+		<version.target>1.8</version.target>
 		<version.maven-jar-plugin>2.4</version.maven-jar-plugin>
 		<version.maven-source-plugin>2.2.1</version.maven-source-plugin>
 		<version.maven-surefire-plugin>2.12</version.maven-surefire-plugin>
